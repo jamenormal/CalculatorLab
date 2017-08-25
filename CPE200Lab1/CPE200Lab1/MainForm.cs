@@ -127,6 +127,21 @@ namespace CPE200Lab1
                     break;
             }
             isAllowBack = false;
+            if (lblDisplay.Text is "Error")
+            {
+                return;
+            }
+            string secondOperand = lblDisplay.Text;
+            string result = calculate(operate, firstOperand, secondOperand);
+            if (result is "E" || result.Length > 8)
+            {
+                lblDisplay.Text = "Error";
+            }
+            else
+            {
+                lblDisplay.Text = result;
+            }
+            isAfterEqual = true;
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
