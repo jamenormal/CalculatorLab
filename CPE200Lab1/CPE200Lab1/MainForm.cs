@@ -19,6 +19,8 @@ namespace CPE200Lab1
         private string firstOperand;
         private string operate;
 
+        private CalculatorEngine engine;
+
         private void resetAll()
         {
             lblDisplay.Text = "0";
@@ -125,23 +127,25 @@ namespace CPE200Lab1
                 case "%":
                     // your code here
                     break;
+                    if (lblDisplay.Text is "Error")
+                    {
+                        return;
+                    }
+                    string secondOperand = lblDisplay.Text;
+                    string result = calculate(operate, firstOperand, secondOperand);
+                    if (result is "E" || result.Length > 8)
+                    {
+                        lblDisplay.Text = "Error";
+                    }
+                    else
+                    {
+                        lblDisplay.Text = result;
+                    }
+                    isAfterEqual = true;
+
             }
             isAllowBack = false;
-            if (lblDisplay.Text is "Error")
-            {
-                return;
-            }
-            string secondOperand = lblDisplay.Text;
-            string result = calculate(operate, firstOperand, secondOperand);
-            if (result is "E" || result.Length > 8)
-            {
-                lblDisplay.Text = "Error";
-            }
-            else
-            {
-                lblDisplay.Text = result;
-            }
-            isAfterEqual = true;
+
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
